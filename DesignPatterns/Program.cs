@@ -1,6 +1,8 @@
 ﻿using DesignPatterns.CreationalPatterns.AbstractFactory;
 using DesignPatterns.CreationalPatterns.Builder;
+using DesignPatterns.CreationalPatterns.FactoryMethod;
 using System;
+using System.Collections.Generic;
 
 namespace DesignPatterns
 {
@@ -11,9 +13,9 @@ namespace DesignPatterns
 
             //AbstractFactory();
 
-            Builder();
+            //Builder();
 
-
+            FactoryMethod();
 
             Console.ReadKey();
         }
@@ -48,6 +50,28 @@ namespace DesignPatterns
             p2.show();
                 
 
+
+        }
+
+
+        static void FactoryMethod()
+        {
+            List<Document> documents = new List<Document>();
+
+            documents.Add(new Resume());
+            documents.Add(new Report());
+
+            foreach(var doc in documents)
+            {
+                
+                Console.WriteLine(doc.GetType().Name + " consists of:");
+                foreach(var page in doc.Pages)
+                {
+                    Console.WriteLine(page.GetType().Name);
+                }
+
+                Console.WriteLine("");
+            }
 
         }
     }
