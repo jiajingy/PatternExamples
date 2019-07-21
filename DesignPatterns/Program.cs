@@ -2,6 +2,7 @@
 using DesignPatterns.CreationalPatterns.Builder;
 using DesignPatterns.CreationalPatterns.FactoryMethod;
 using DesignPatterns.CreationalPatterns.Prototype;
+using DesignPatterns.CreationalPatterns.Singleton;
 using System;
 using System.Collections.Generic;
 
@@ -19,6 +20,8 @@ namespace DesignPatterns
             //FactoryMethod();
 
             //Prototype();
+
+            Singleton();
 
             Console.ReadKey();
         }
@@ -97,6 +100,26 @@ namespace DesignPatterns
             Color color1 = colorManager["red"].Clone() as Color;
             Color color2 = colorManager["peace"].Clone() as Color;
             Color color3 = colorManager["flame"].Clone() as Color;
+        }
+
+
+        static void Singleton()
+        {
+            LoadBalancer b1 = LoadBalancer.GetLoadBalancer();
+            LoadBalancer b2 = LoadBalancer.GetLoadBalancer();
+            LoadBalancer b3 = LoadBalancer.GetLoadBalancer();
+            LoadBalancer b4 = LoadBalancer.GetLoadBalancer();
+
+            if (b1 == b2 && b2 == b3 && b3 == b4)
+                Console.WriteLine("Same instance\n");
+
+            LoadBalancer balancer = LoadBalancer.GetLoadBalancer();
+            for(int i = 0; i < 15; i++)
+            {
+                string serverName = balancer.NextServer.Name;
+                Console.WriteLine("Dispatch request to: " + serverName);
+
+            }
         }
     }
 }
