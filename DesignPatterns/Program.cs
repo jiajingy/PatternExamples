@@ -3,6 +3,7 @@ using DesignPatterns.CreationalPatterns.Builder;
 using DesignPatterns.CreationalPatterns.FactoryMethod;
 using DesignPatterns.CreationalPatterns.Prototype;
 using DesignPatterns.CreationalPatterns.Singleton;
+using DesignPatterns.StructuralPatterns.Adapter;
 using System;
 using System.Collections.Generic;
 
@@ -13,6 +14,8 @@ namespace DesignPatterns
         static void Main(string[] args)
         {
 
+            // ---Creational----- //
+
             //AbstractFactory();
 
             //Builder();
@@ -21,7 +24,14 @@ namespace DesignPatterns
 
             //Prototype();
 
-            Singleton();
+            //Singleton();
+
+
+            // --- Structual ---- ///
+
+
+
+            Adapter();
 
             Console.ReadKey();
         }
@@ -120,6 +130,31 @@ namespace DesignPatterns
                 Console.WriteLine("Dispatch request to: " + serverName);
 
             }
+        }
+
+
+
+        static void Adapter()
+        {
+            // Non-adapted chemical compound
+
+            Compound unknown = new Compound("Unknown");
+            unknown.Display();
+
+            // Adapted chemical compounds
+
+            Compound water = new RichCompound("Water");
+            water.Display();
+
+            Compound benzene = new RichCompound("Benzene");
+            benzene.Display();
+
+            Compound ethanol = new RichCompound("Ethanol");
+            ethanol.Display();
+
+            // Wait for user
+
+            Console.ReadKey();
         }
     }
 }
