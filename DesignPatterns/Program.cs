@@ -3,7 +3,10 @@ using DesignPatterns.CreationalPatterns.Builder;
 using DesignPatterns.CreationalPatterns.FactoryMethod;
 using DesignPatterns.CreationalPatterns.Prototype;
 using DesignPatterns.CreationalPatterns.Singleton;
+
 using DesignPatterns.StructuralPatterns.Adapter;
+using DesignPatterns.StructuralPatterns.Bridge;
+using DesignPatterns.StructuralPatterns.Composite;
 using System;
 using System.Collections.Generic;
 
@@ -31,12 +34,18 @@ namespace DesignPatterns
 
 
 
-            Adapter();
+            //Adapter();
 
-            Console.ReadKey();
+            //Bridge();
+
+            Composite();
+
+            Console.ReadLine();
         }
 
+        
 
+        
 
         static void AbstractFactory()
         {
@@ -155,6 +164,59 @@ namespace DesignPatterns
             // Wait for user
 
             Console.ReadKey();
+        }
+
+
+        static void Bridge()
+        {
+            // Create RefinedAbstraction
+            Customers customers = new Customers("Chicago");
+
+            // Set ConcreteImplementor
+            customers.Data = new CustomersData();
+
+            // Excercie the bridge
+            customers.Show();
+            customers.Next();
+            customers.Show();
+            customers.Next();
+            customers.Show();
+            customers.Next();
+            customers.Add("Henry Velasquez");
+
+            customers.ShowAll();
+
+            
+
+
+        }
+
+        static void Composite()
+        {
+            // Create a tree structure
+            CompositeElement root = new CompositeElement("Picture");
+
+            root.Add(new PrimitiveElement("Red Line"));
+            root.Add(new PrimitiveElement("Blue Circle"));
+            root.Add(new PrimitiveElement("Green Box"));
+
+            // Create a branch
+            CompositeElement comp = new CompositeElement("Two Circles");
+            comp.Add(new PrimitiveElement("Black Circle"));
+            comp.Add(new PrimitiveElement("White Circle"));
+            root.Add(comp);
+
+            // Add and remove a PrimitiveElement
+            PrimitiveElement pe = new PrimitiveElement("Yellow Line");
+            root.Add(pe);
+            root.Remove(pe);
+
+            // Recursively display nodes
+            root.Display(1);
+
+
+
+
         }
     }
 }
