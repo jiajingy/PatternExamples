@@ -1,4 +1,4 @@
 # PatternExamples
-Some examples of design patterns
+Examples of design patterns
 
-Testing!!!!
+
