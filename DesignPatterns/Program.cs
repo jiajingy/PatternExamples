@@ -7,6 +7,7 @@ using DesignPatterns.CreationalPatterns.Singleton;
 using DesignPatterns.StructuralPatterns.Adapter;
 using DesignPatterns.StructuralPatterns.Bridge;
 using DesignPatterns.StructuralPatterns.Composite;
+using DesignPatterns.StructuralPatterns.Decorator;
 using System;
 using System.Collections.Generic;
 
@@ -38,7 +39,9 @@ namespace DesignPatterns
 
             //Bridge();
 
-            Composite();
+            //Composite();
+
+            Decorator();
 
             Console.ReadLine();
         }
@@ -216,6 +219,28 @@ namespace DesignPatterns
 
 
 
+
+        }
+
+
+        static void Decorator()
+        {
+            Book book = new Book("Worley", "Inside ASP.NET", 10);
+            book.Display();
+
+            Video video = new Video("Spielberg", "Jaws", 23, 92);
+            video.Display();
+
+            Console.WriteLine("\nMaking video borrowable:");
+
+            Borrowable borrowVideo = new Borrowable(video);
+            borrowVideo.BorrowItem("Customer #1");
+            borrowVideo.BorrowItem("Customer #2");
+
+            borrowVideo.Display();
+
+
+            
 
         }
     }
