@@ -8,6 +8,9 @@ using DesignPatterns.StructuralPatterns.Adapter;
 using DesignPatterns.StructuralPatterns.Bridge;
 using DesignPatterns.StructuralPatterns.Composite;
 using DesignPatterns.StructuralPatterns.Decorator;
+using DesignPatterns.StructuralPatterns.Facade;
+using DesignPatterns.StructuralPatterns.Flyweight;
+using DesignPatterns.StructuralPatterns.Proxy;
 using System;
 using System.Collections.Generic;
 
@@ -41,7 +44,15 @@ namespace DesignPatterns
 
             //Composite();
 
-            Decorator();
+            //Decorator();
+
+            //Facade();
+
+            //Flyweight();
+
+
+            Proxy();
+            
 
             Console.ReadLine();
         }
@@ -242,6 +253,51 @@ namespace DesignPatterns
 
             
 
+        }
+
+
+        static void Facade()
+        {
+            Mortgage mortgage = new Mortgage();
+
+            Customer customer = new Customer("Xinwei Yu");
+            bool eligible = mortgage.IsEligible(customer, 125000);
+
+            Console.WriteLine("\n" + customer.Name +
+                " has been " + (eligible ? "Approved" : "Rejected"));
+
+
+        }
+
+        static void Flyweight()
+        {
+            string document = "AAZZBBZB";
+            char[] chars = document.ToCharArray();
+
+            CharacterFactory factory = new CharacterFactory();
+
+            int pointSize = 10;
+
+            foreach(char c in chars)
+            {
+                pointSize++;
+                Character character = factory.GetCharacter(c);
+                character.Display(pointSize);
+            }
+        }
+
+        static void Proxy()
+        {
+            // Create math proxy
+
+            MathProxy proxy = new MathProxy();
+
+            // Do the math
+
+            Console.WriteLine("4 + 2 = " + proxy.Add(4, 2));
+            Console.WriteLine("4 - 2 = " + proxy.Sub(4, 2));
+            Console.WriteLine("4 * 2 = " + proxy.Mul(4, 2));
+            Console.WriteLine("4 / 2 = " + proxy.Div(4, 2));
         }
     }
 }
