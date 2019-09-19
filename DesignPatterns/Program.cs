@@ -1,4 +1,5 @@
 ﻿
+using DesignPatterns.BehavioralPatterns.Command;
 using DesignPatterns.BehavioralPatterns.ChainOfResp;
 
 using DesignPatterns.CreationalPatterns.AbstractFactory;
@@ -57,7 +58,9 @@ namespace DesignPatterns
 
             // --- Behavioral --- //
 
-            ChainOfResp();
+            //ChainOfResp();
+
+            Command();
 
             Console.ReadLine();
         }
@@ -237,7 +240,7 @@ namespace DesignPatterns
 
 
         }
-
+        
 
         static void Decorator()
         {
@@ -326,9 +329,26 @@ namespace DesignPatterns
             p = new Purchase(2036, 122100.00, "Project Y");
             larry.ProcessRequest(p);
 
-            // Wait for user
+            
+        }
 
-            Console.ReadKey();
+        static void Command()
+        {
+            // Create user and let her compute
+            User user = new User();
+
+            // User presses calculator buttons
+            user.Compute('+', 100);
+            user.Compute('-', 50);
+            user.Compute('*', 10);
+            user.Compute('/', 2);
+
+
+            // Undo 4 commands
+            user.Undo(4);
+
+            // Redo 3 commands
+            user.Redo(3);
         }
     }
 }
