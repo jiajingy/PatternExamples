@@ -1,4 +1,7 @@
-﻿using DesignPatterns.CreationalPatterns.AbstractFactory;
+﻿
+using DesignPatterns.BehavioralPatterns.ChainOfResp;
+
+using DesignPatterns.CreationalPatterns.AbstractFactory;
 using DesignPatterns.CreationalPatterns.Builder;
 using DesignPatterns.CreationalPatterns.FactoryMethod;
 using DesignPatterns.CreationalPatterns.Prototype;
@@ -50,9 +53,11 @@ namespace DesignPatterns
 
             //Flyweight();
 
+            //Proxy();
 
-            Proxy();
-            
+            // --- Behavioral --- //
+
+            ChainOfResp();
 
             Console.ReadLine();
         }
@@ -75,7 +80,7 @@ namespace DesignPatterns
 
         static void Builder()
         {
-            Director director = new Director();
+            CreationalPatterns.Builder.Director director = new CreationalPatterns.Builder.Director();
             ConcreteBuilder1 b1 = new ConcreteBuilder1();
             ConcreteBuilder2 b2 = new ConcreteBuilder2();
 
@@ -298,6 +303,32 @@ namespace DesignPatterns
             Console.WriteLine("4 - 2 = " + proxy.Sub(4, 2));
             Console.WriteLine("4 * 2 = " + proxy.Mul(4, 2));
             Console.WriteLine("4 / 2 = " + proxy.Div(4, 2));
+        }
+
+
+        static void ChainOfResp()
+        {
+            Approver larry = new BehavioralPatterns.ChainOfResp.Director();
+            Approver sam = new VicePresident();
+            Approver tammy = new President();
+
+            larry.SetSuccessor(sam);
+            sam.SetSuccessor(tammy);
+
+            // Generate and process purchase requests
+
+            Purchase p = new Purchase(2034, 350.00, "Assets");
+            larry.ProcessRequest(p);
+
+            p = new Purchase(2035, 32590.10, "Project X");
+            larry.ProcessRequest(p);
+
+            p = new Purchase(2036, 122100.00, "Project Y");
+            larry.ProcessRequest(p);
+
+            // Wait for user
+
+            Console.ReadKey();
         }
     }
 }
