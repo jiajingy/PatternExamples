@@ -17,6 +17,7 @@ using DesignPatterns.StructuralPatterns.Flyweight;
 using DesignPatterns.StructuralPatterns.Proxy;
 using System;
 using System.Collections.Generic;
+using DesignPatterns.BehavioralPatterns.Interpreter;
 
 namespace DesignPatterns
 {
@@ -60,7 +61,9 @@ namespace DesignPatterns
 
             //ChainOfResp();
 
-            Command();
+            //Command();
+
+            Interpreter();
 
             Console.ReadLine();
         }
@@ -349,6 +352,30 @@ namespace DesignPatterns
 
             // Redo 3 commands
             user.Redo(3);
+        }
+
+        static void Interpreter()
+        {
+            string roman = "MCMXXVIII";
+            Context context = new Context(roman);
+
+            // Build the 'parse tree'
+
+            List<Expression> tree = new List<Expression>();
+            tree.Add(new ThousandExpression());
+            tree.Add(new HundredExpression());
+            tree.Add(new TenExpression());
+            tree.Add(new OneExpression());
+
+            // Interpret
+
+            foreach (Expression exp in tree)
+            {
+                exp.Interpret(context);
+            }
+
+            Console.WriteLine("{0} = {1}",
+              roman, context.Output);
         }
     }
 }
