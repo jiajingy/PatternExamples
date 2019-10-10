@@ -385,7 +385,6 @@ namespace DesignPatterns
         static void Iterator()
         {
             // Build a collection
-
             Collection collection = new Collection();
             collection[0] = new Item("Item 0");
             collection[1] = new Item("Item 1");
