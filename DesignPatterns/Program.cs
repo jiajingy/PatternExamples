@@ -69,7 +69,7 @@ namespace DesignPatterns
 
             //Iterator();
 
-            Mediator();
+            //Mediator();
 
             Console.ReadLine();
         }
